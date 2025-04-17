@@ -1,0 +1,15 @@
+.env
+.vscode
+
+
+node_modules
+
+# ourput folders
+log
+conflicts/
+uploads/
+
+# Programms
+symbolic-xaip
+z3
+
