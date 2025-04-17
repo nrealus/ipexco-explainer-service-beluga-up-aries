@@ -1,0 +1,3 @@
+[submodule "beluga"]
+	path = beluga
+	url = https://github.com/plaans/beluga
