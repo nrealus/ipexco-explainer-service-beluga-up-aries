@@ -6,11 +6,6 @@ RUN apt-get upgrade -y
 RUN apt-get update
 RUN apt-get upgrade -y
 
-# Copy beluga repository (w/ submodules)
-
-RUN mkdir -p /usr/src/beluga
-COPY beluga/ /usr/src/beluga/
-
 # Python
 
 RUN apt-get remove -y python3.12
@@ -51,6 +46,11 @@ RUN apt-get install -y curl
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 RUN cargo --version
+
+# Copy beluga repository (w/ submodules)
+
+RUN mkdir -p /usr/src/beluga
+COPY beluga/ /usr/src/beluga/
 
 # Build the approriate Rust executables
 
