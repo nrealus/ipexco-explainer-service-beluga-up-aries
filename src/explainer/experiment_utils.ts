@@ -18,16 +18,13 @@ export function setupExperimentEnvironment(model: PlanningModel, goalDefinition:
     fs.writeFileSync(problem_path, JSON.stringify(model))
 
     console.log("plan_properties: ", goalDefinition.plan_properties);
-    var properties = []
-    if (goalDefinition.plan_properties !== undefined) {
-        assert(goalDefinition.soft_goals.length == 0);
-        properties = goalDefinition.plan_properties.filter((item) => goalDefinition.hard_goals.includes(item._id)).map((item) => item);
-    }
+    console.log("soft_goals: ", goalDefinition.soft_goals);
+    console.log("hard_goals: ", goalDefinition.hard_goals);
 
     const properties_path = expFolder + '/problem_props.json'
     fs.writeFileSync(
         properties_path,
-        JSON.stringify(properties),
+        JSON.stringify(goalDefinition.plan_properties)
     )
 }
 

@@ -16,6 +16,7 @@ export function createExplanationRun(request: ExplainerRequest): ExplainRun {
       'explain',
       'problem_base.json',
       'problem_props.json',
+      request.hardGoals.toString(),
     ]
   }
 }
@@ -99,7 +100,7 @@ function run(explain_run: ExplainRun, job: Job<any>): Promise<ExplainRun> {
 
 function get_res(explain_run: ExplainRun): Result {
 
-  let conflicts_path = explain_run.experiment_path + 'output/conflicts/conflicts.json';
+  let conflicts_path = explain_run.experiment_path + '/output/conflicts/conflicts.json';
 
   let raw_res = JSON.parse(fs.readFileSync(conflicts_path, 'utf8'));
 
