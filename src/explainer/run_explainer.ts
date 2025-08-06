@@ -14,6 +14,7 @@ export function createExplanationRun(request: ExplainerRequest): ExplainRun {
     explainer: process.env.EXPLAINER_SERVICE_PLANNER,
     args: [
       'explain',
+      process.env.MAX_NUM_AVAILABLE_SWAPS,
       'problem_base.json',
       'problem_props.json',
       request.hardGoals.toString(),
@@ -24,10 +25,11 @@ export function createExplanationRun(request: ExplainerRequest): ExplainRun {
 
 export async function schedule_run(explain_run: ExplainRun, job: Job) {
 
+    console.log("request args?:", explain_run.request);
     setupExperimentEnvironment(explain_run.request.model, 
       {
         plan_properties: explain_run.request.goals,
-        hard_goals: explain_run.request.hardGoals,
+        hard_goals: explain_run.request.hardGoals, // FIXME/BUG?? why is this empty in all tests ??
         soft_goals: explain_run.request.softGoals
       },
       explain_run.experiment_path
